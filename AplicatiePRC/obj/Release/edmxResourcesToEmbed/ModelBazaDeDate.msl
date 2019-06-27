@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BazaDeDateIntranetModelStoreContainer" CdmEntityContainer="BazaDeDateIntranetEntities1">
+    <EntitySetMapping Name="Conts">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Cont">
+        <MappingFragment StoreEntitySet="Cont">
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curs">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Cur">
+        <MappingFragment StoreEntitySet="Curs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DenumireCurs" ColumnName="DenumireCurs" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="An" ColumnName="An" />
+          <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+          <ScalarProperty Name="NumarCredite" ColumnName="NumarCredite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facultates">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Facultate">
+        <MappingFragment StoreEntitySet="Facultate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormaInvatamants">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.FormaInvatamant">
+        <MappingFragment StoreEntitySet="FormaInvatamant">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DenumireFormaInvatamant" ColumnName="DenumireFormaInvatamant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notas">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Nota">
+        <MappingFragment StoreEntitySet="Nota">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nota1" ColumnName="Nota" />
+          <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specializares">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Specializare">
+        <MappingFragment StoreEntitySet="Specializare">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+          <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+          <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sports">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Sport">
+        <MappingFragment StoreEntitySet="Sport">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DenumireSport" ColumnName="DenumireSport" />
+          <ScalarProperty Name="NumarLocuriDisponibile" ColumnName="NumarLocuriDisponibile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="IdSport" ColumnName="IdSport" />
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+          <ScalarProperty Name="DataNasterii" ColumnName="DataNasterii" />
+          <ScalarProperty Name="AnStudiu" ColumnName="AnStudiu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

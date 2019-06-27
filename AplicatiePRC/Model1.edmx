@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="IdAdministrator" />
+          </Key>
+          <Property Name="IdAdministrator" Type="int" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CNP" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cont">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdAdministrator" Type="int" />
+          <Property Name="IdStudent" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="Curs">
+          <Key>
+            <PropertyRef Name="IdCurs" />
+          </Key>
+          <Property Name="IdCurs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DenumireCurs" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdSpecializare" Type="int" Nullable="false" />
+          <Property Name="An" Type="int" Nullable="false" />
+          <Property Name="Semestru" Type="int" Nullable="false" />
+          <Property Name="NumarCredite" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facultate">
+          <Key>
+            <PropertyRef Name="IdFacultate" />
+          </Key>
+          <Property Name="IdFacultate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DenumireFacultate" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormaInvatamant">
+          <Key>
+            <PropertyRef Name="IdFormaInvatamant" />
+          </Key>
+          <Property Name="IdFormaInvatamant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DenumireFormaInvatamant" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="IdNota" />
+          </Key>
+          <Property Name="IdNota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Calificativ" Type="int" Nullable="false" />
+          <Property Name="IdCurs" Type="int" Nullable="false" />
+          <Property Name="IdStudent" Type="int" Nullable="false" />
+          <Property Name="DataAdaugare" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specializare">
+          <Key>
+            <PropertyRef Name="IdSpecializare" />
+          </Key>
+          <Property Name="IdSpecializare" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DenumireSpecializare" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdFacultate" Type="int" Nullable="false" />
+          <Property Name="IdFormaInvatamant" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="IdStudent" />
+          </Key>
+          <Property Name="IdStudent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenume" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CNP" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataNasterii" Type="date" Nullable="false" />
+          <Property Name="IdSpecializare" Type="int" Nullable="false" />
+          <Property Name="AnStudiu" Type="int" Nullable="false" />
+          <Property Name="Grupa" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cont_ToAdmisitrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="0..1" />
+          <End Role="Cont" Type="Self.Cont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="IdAdministrator" />
+            </Principal>
+            <Dependent Role="Cont">
+              <PropertyRef Name="IdAdministrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cont_ToStudent">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Cont" Type="Self.Cont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Cont">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curs_ToSpecializare">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1" />
+          <End Role="Curs" Type="Self.Curs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="IdSpecializare" />
+            </Principal>
+            <Dependent Role="Curs">
+              <PropertyRef Name="IdSpecializare" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_ToCurs">
+          <End Role="Curs" Type="Self.Curs" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curs">
+              <PropertyRef Name="IdCurs" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="IdCurs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_ToStudent">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_ToFacultate">
+          <End Role="Facultate" Type="Self.Facultate" Multiplicity="1" />
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultate">
+              <PropertyRef Name="IdFacultate" />
+            </Principal>
+            <Dependent Role="Specializare">
+              <PropertyRef Name="IdFacultate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_ToFormaInvatamant">
+          <End Role="FormaInvatamant" Type="Self.FormaInvatamant" Multiplicity="1" />
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaInvatamant">
+              <PropertyRef Name="IdFormaInvatamant" />
+            </Principal>
+            <Dependent Role="Specializare">
+              <PropertyRef Name="IdFormaInvatamant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_ToSpecializare">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="IdSpecializare" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdSpecializare" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cont" EntityType="Self.Cont" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curs" EntityType="Self.Curs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facultate" EntityType="Self.Facultate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormaInvatamant" EntityType="Self.FormaInvatamant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nota" EntityType="Self.Nota" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specializare" EntityType="Self.Specializare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cont_ToAdmisitrator" Association="Self.FK_Cont_ToAdmisitrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Cont" EntitySet="Cont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cont_ToStudent" Association="Self.FK_Cont_ToStudent">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Cont" EntitySet="Cont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curs_ToSpecializare" Association="Self.FK_Curs_ToSpecializare">
+            <End Role="Specializare" EntitySet="Specializare" />
+            <End Role="Curs" EntitySet="Curs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_ToCurs" Association="Self.FK_Nota_ToCurs">
+            <End Role="Curs" EntitySet="Curs" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_ToStudent" Association="Self.FK_Nota_ToStudent">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_ToFacultate" Association="Self.FK_Specializare_ToFacultate">
+            <End Role="Facultate" EntitySet="Facultate" />
+            <End Role="Specializare" EntitySet="Specializare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_ToFormaInvatamant" Association="Self.FK_Specializare_ToFormaInvatamant">
+            <End Role="FormaInvatamant" EntitySet="FormaInvatamant" />
+            <End Role="Specializare" EntitySet="Specializare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_ToSpecializare" Association="Self.FK_Student_ToSpecializare">
+            <End Role="Specializare" EntitySet="Specializare" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="IdAdministrator" />
+          </Key>
+          <Property Name="IdAdministrator" Type="Int32" Nullable="false" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cont" Relationship="Self.FK_Cont_ToAdmisitrator" FromRole="Administrator" ToRole="Cont" />
+        </EntityType>
+        <EntityType Name="Cont">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdAdministrator" Type="Int32" />
+          <Property Name="IdStudent" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Cont_ToAdmisitrator" FromRole="Cont" ToRole="Administrator" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Cont_ToStudent" FromRole="Cont" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Curs">
+          <Key>
+            <PropertyRef Name="IdCurs" />
+          </Key>
+          <Property Name="IdCurs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DenumireCurs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdSpecializare" Type="Int32" Nullable="false" />
+          <Property Name="An" Type="Int32" Nullable="false" />
+          <Property Name="Semestru" Type="Int32" Nullable="false" />
+          <Property Name="NumarCredite" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Specializare" Relationship="Self.FK_Curs_ToSpecializare" FromRole="Curs" ToRole="Specializare" />
+          <NavigationProperty Name="Nota" Relationship="Self.FK_Nota_ToCurs" FromRole="Curs" ToRole="Nota" />
+        </EntityType>
+        <EntityType Name="Facultate">
+          <Key>
+            <PropertyRef Name="IdFacultate" />
+          </Key>
+          <Property Name="IdFacultate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DenumireFacultate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Specializare" Relationship="Self.FK_Specializare_ToFacultate" FromRole="Facultate" ToRole="Specializare" />
+        </EntityType>
+        <EntityType Name="FormaInvatamant">
+          <Key>
+            <PropertyRef Name="IdFormaInvatamant" />
+          </Key>
+          <Property Name="IdFormaInvatamant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DenumireFormaInvatamant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Specializare" Relationship="Self.FK_Specializare_ToFormaInvatamant" FromRole="FormaInvatamant" ToRole="Specializare" />
+        </EntityType>
+        <EntityType Name="Nota">
+          <Key>
+            <PropertyRef Name="IdNota" />
+          </Key>
+          <Property Name="IdNota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Calificativ" Type="Int32" Nullable="false" />
+          <Property Name="IdCurs" Type="Int32" Nullable="false" />
+          <Property Name="IdStudent" Type="Int32" Nullable="false" />
+          <Property Name="DataAdaugare" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Curs" Relationship="Self.FK_Nota_ToCurs" FromRole="Nota" ToRole="Curs" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Nota_ToStudent" FromRole="Nota" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Specializare">
+          <Key>
+            <PropertyRef Name="IdSpecializare" />
+          </Key>
+          <Property Name="IdSpecializare" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DenumireSpecializare" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdFacultate" Type="Int32" Nullable="false" />
+          <Property Name="IdFormaInvatamant" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Curs" Relationship="Self.FK_Curs_ToSpecializare" FromRole="Specializare" ToRole="Curs" />
+          <NavigationProperty Name="Facultate" Relationship="Self.FK_Specializare_ToFacultate" FromRole="Specializare" ToRole="Facultate" />
+          <NavigationProperty Name="FormaInvatamant" Relationship="Self.FK_Specializare_ToFormaInvatamant" FromRole="Specializare" ToRole="FormaInvatamant" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Student_ToSpecializare" FromRole="Specializare" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="IdStudent" />
+          </Key>
+          <Property Name="IdStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataNasterii" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdSpecializare" Type="Int32" Nullable="false" />
+          <Property Name="AnStudiu" Type="Int32" Nullable="false" />
+          <Property Name="Grupa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cont" Relationship="Self.FK_Cont_ToStudent" FromRole="Student" ToRole="Cont" />
+          <NavigationProperty Name="Nota" Relationship="Self.FK_Nota_ToStudent" FromRole="Student" ToRole="Nota" />
+          <NavigationProperty Name="Specializare" Relationship="Self.FK_Student_ToSpecializare" FromRole="Student" ToRole="Specializare" />
+        </EntityType>
+        <Association Name="FK_Cont_ToAdmisitrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="0..1" />
+          <End Role="Cont" Type="Self.Cont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="IdAdministrator" />
+            </Principal>
+            <Dependent Role="Cont">
+              <PropertyRef Name="IdAdministrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cont_ToStudent">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Cont" Type="Self.Cont" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Cont">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curs_ToSpecializare">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1" />
+          <End Role="Curs" Type="Self.Curs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="IdSpecializare" />
+            </Principal>
+            <Dependent Role="Curs">
+              <PropertyRef Name="IdSpecializare" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_ToCurs">
+          <End Role="Curs" Type="Self.Curs" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curs">
+              <PropertyRef Name="IdCurs" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="IdCurs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_ToFacultate">
+          <End Role="Facultate" Type="Self.Facultate" Multiplicity="1" />
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultate">
+              <PropertyRef Name="IdFacultate" />
+            </Principal>
+            <Dependent Role="Specializare">
+              <PropertyRef Name="IdFacultate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Specializare_ToFormaInvatamant">
+          <End Role="FormaInvatamant" Type="Self.FormaInvatamant" Multiplicity="1" />
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaInvatamant">
+              <PropertyRef Name="IdFormaInvatamant" />
+            </Principal>
+            <Dependent Role="Specializare">
+              <PropertyRef Name="IdFormaInvatamant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nota_ToStudent">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Nota" Type="Self.Nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="IdStudent" />
+            </Principal>
+            <Dependent Role="Nota">
+              <PropertyRef Name="IdStudent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_ToSpecializare">
+          <End Role="Specializare" Type="Self.Specializare" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specializare">
+              <PropertyRef Name="IdSpecializare" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="IdSpecializare" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Baza_de_date_StudentiEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Cont" EntityType="Self.Cont" />
+          <EntitySet Name="Curs" EntityType="Self.Curs" />
+          <EntitySet Name="Facultate" EntityType="Self.Facultate" />
+          <EntitySet Name="FormaInvatamant" EntityType="Self.FormaInvatamant" />
+          <EntitySet Name="Nota" EntityType="Self.Nota" />
+          <EntitySet Name="Specializare" EntityType="Self.Specializare" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <AssociationSet Name="FK_Cont_ToAdmisitrator" Association="Self.FK_Cont_ToAdmisitrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Cont" EntitySet="Cont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cont_ToStudent" Association="Self.FK_Cont_ToStudent">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Cont" EntitySet="Cont" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curs_ToSpecializare" Association="Self.FK_Curs_ToSpecializare">
+            <End Role="Specializare" EntitySet="Specializare" />
+            <End Role="Curs" EntitySet="Curs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_ToCurs" Association="Self.FK_Nota_ToCurs">
+            <End Role="Curs" EntitySet="Curs" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_ToFacultate" Association="Self.FK_Specializare_ToFacultate">
+            <End Role="Facultate" EntitySet="Facultate" />
+            <End Role="Specializare" EntitySet="Specializare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Specializare_ToFormaInvatamant" Association="Self.FK_Specializare_ToFormaInvatamant">
+            <End Role="FormaInvatamant" EntitySet="FormaInvatamant" />
+            <End Role="Specializare" EntitySet="Specializare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nota_ToStudent" Association="Self.FK_Nota_ToStudent">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Nota" EntitySet="Nota" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_ToSpecializare" Association="Self.FK_Student_ToSpecializare">
+            <End Role="Specializare" EntitySet="Specializare" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Baza_de_date_StudentiEntities1">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="Model.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cont">
+            <EntityTypeMapping TypeName="Model.Cont">
+              <MappingFragment StoreEntitySet="Cont">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curs">
+            <EntityTypeMapping TypeName="Model.Curs">
+              <MappingFragment StoreEntitySet="Curs">
+                <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+                <ScalarProperty Name="DenumireCurs" ColumnName="DenumireCurs" />
+                <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+                <ScalarProperty Name="An" ColumnName="An" />
+                <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+                <ScalarProperty Name="NumarCredite" ColumnName="NumarCredite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facultate">
+            <EntityTypeMapping TypeName="Model.Facultate">
+              <MappingFragment StoreEntitySet="Facultate">
+                <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+                <ScalarProperty Name="DenumireFacultate" ColumnName="DenumireFacultate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormaInvatamant">
+            <EntityTypeMapping TypeName="Model.FormaInvatamant">
+              <MappingFragment StoreEntitySet="FormaInvatamant">
+                <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+                <ScalarProperty Name="DenumireFormaInvatamant" ColumnName="DenumireFormaInvatamant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nota">
+            <EntityTypeMapping TypeName="Model.Nota">
+              <MappingFragment StoreEntitySet="Nota">
+                <ScalarProperty Name="IdNota" ColumnName="IdNota" />
+                <ScalarProperty Name="Calificativ" ColumnName="Calificativ" />
+                <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="DataAdaugare" ColumnName="DataAdaugare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specializare">
+            <EntityTypeMapping TypeName="Model.Specializare">
+              <MappingFragment StoreEntitySet="Specializare">
+                <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+                <ScalarProperty Name="DenumireSpecializare" ColumnName="DenumireSpecializare" />
+                <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+                <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="Model.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="DataNasterii" ColumnName="DataNasterii" />
+                <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+                <ScalarProperty Name="AnStudiu" ColumnName="AnStudiu" />
+                <ScalarProperty Name="Grupa" ColumnName="Grupa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

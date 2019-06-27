@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c28133ceee644e38375595a4000229d" Name="Diagram1" ZoomLevel="53">
+        <EntityTypeShape EntityType="Model.Administrator" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Cont" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Curs" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Facultate" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FormaInvatamant" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Nota" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Specializare" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Cont_ToAdmisitrator" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Cont_ToStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Curs_ToSpecializare" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Nota_ToCurs" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Specializare_ToFacultate" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Specializare_ToFormaInvatamant" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Nota_ToStudent" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Student_ToSpecializare" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

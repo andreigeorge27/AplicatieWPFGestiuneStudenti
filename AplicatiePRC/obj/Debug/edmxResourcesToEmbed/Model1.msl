@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Baza_de_date_StudentiEntities1">
+    <EntitySetMapping Name="Administrator">
+      <EntityTypeMapping TypeName="Model.Administrator">
+        <MappingFragment StoreEntitySet="Administrator">
+          <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cont">
+      <EntityTypeMapping TypeName="Model.Cont">
+        <MappingFragment StoreEntitySet="Cont">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curs">
+      <EntityTypeMapping TypeName="Model.Curs">
+        <MappingFragment StoreEntitySet="Curs">
+          <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+          <ScalarProperty Name="DenumireCurs" ColumnName="DenumireCurs" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="An" ColumnName="An" />
+          <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+          <ScalarProperty Name="NumarCredite" ColumnName="NumarCredite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facultate">
+      <EntityTypeMapping TypeName="Model.Facultate">
+        <MappingFragment StoreEntitySet="Facultate">
+          <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+          <ScalarProperty Name="DenumireFacultate" ColumnName="DenumireFacultate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormaInvatamant">
+      <EntityTypeMapping TypeName="Model.FormaInvatamant">
+        <MappingFragment StoreEntitySet="FormaInvatamant">
+          <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+          <ScalarProperty Name="DenumireFormaInvatamant" ColumnName="DenumireFormaInvatamant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nota">
+      <EntityTypeMapping TypeName="Model.Nota">
+        <MappingFragment StoreEntitySet="Nota">
+          <ScalarProperty Name="IdNota" ColumnName="IdNota" />
+          <ScalarProperty Name="Calificativ" ColumnName="Calificativ" />
+          <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="DataAdaugare" ColumnName="DataAdaugare" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specializare">
+      <EntityTypeMapping TypeName="Model.Specializare">
+        <MappingFragment StoreEntitySet="Specializare">
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="DenumireSpecializare" ColumnName="DenumireSpecializare" />
+          <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+          <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="Model.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+          <ScalarProperty Name="DataNasterii" ColumnName="DataNasterii" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="AnStudiu" ColumnName="AnStudiu" />
+          <ScalarProperty Name="Grupa" ColumnName="Grupa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

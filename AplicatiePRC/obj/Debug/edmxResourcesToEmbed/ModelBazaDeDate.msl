@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BazaDeDateIntranetModelStoreContainer" CdmEntityContainer="BazaDeDateIntranetEntities1">
+    <EntitySetMapping Name="Curs">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDeDateIntranetModel.Cur)">
+        <MappingFragment StoreEntitySet="Curs">
+          <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+          <ScalarProperty Name="DenumireCurs" ColumnName="DenumireCurs" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="An" ColumnName="An" />
+          <ScalarProperty Name="Semestru" ColumnName="Semestru" />
+          <ScalarProperty Name="NumarCredite" ColumnName="NumarCredite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Administrator">
+        <MappingFragment StoreEntitySet="Administrator">
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cont1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Cont1">
+        <MappingFragment StoreEntitySet="Cont">
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="IdAdministrator" ColumnName="IdAdministrator" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facultate1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Facultate1">
+        <MappingFragment StoreEntitySet="Facultate">
+          <ScalarProperty Name="DenumireFacultate" ColumnName="DenumireFacultate" />
+          <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormaInvatamant1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.FormaInvatamant1">
+        <MappingFragment StoreEntitySet="FormaInvatamant">
+          <ScalarProperty Name="DenumireFormaInvatamant" ColumnName="DenumireFormaInvatamant" />
+          <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nota1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Nota1">
+        <MappingFragment StoreEntitySet="Nota">
+          <ScalarProperty Name="DataAdaugare" ColumnName="DataAdaugare" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+          <ScalarProperty Name="IdCurs" ColumnName="IdCurs" />
+          <ScalarProperty Name="Calificativ" ColumnName="Calificativ" />
+          <ScalarProperty Name="IdNota" ColumnName="IdNota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specializare1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Specializare1">
+        <MappingFragment StoreEntitySet="Specializare">
+          <ScalarProperty Name="IdFormaInvatamant" ColumnName="IdFormaInvatamant" />
+          <ScalarProperty Name="IdFacultate" ColumnName="IdFacultate" />
+          <ScalarProperty Name="DenumireSpecializare" ColumnName="DenumireSpecializare" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student1">
+      <EntityTypeMapping TypeName="BazaDeDateIntranetModel.Student1">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Grupa" ColumnName="Grupa" />
+          <ScalarProperty Name="AnStudiu" ColumnName="AnStudiu" />
+          <ScalarProperty Name="IdSpecializare" ColumnName="IdSpecializare" />
+          <ScalarProperty Name="DataNasterii" ColumnName="DataNasterii" />
+          <ScalarProperty Name="CNP" ColumnName="CNP" />
+          <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+          <ScalarProperty Name="Nume" ColumnName="Nume" />
+          <ScalarProperty Name="IdStudent" ColumnName="IdStudent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

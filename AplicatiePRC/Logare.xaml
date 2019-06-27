@@ -1,0 +1,47 @@
+﻿<Window x:Class="AplicatiePRC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AplicatiePRC"
+        mc:Ignorable="d"
+        Title="Logare" Height="414" Width="502.4" ResizeMode="NoResize" Icon="Imagini/Artua-Mac-Intranet.ico" WindowStartupLocation="CenterScreen">
+    <Grid Margin="-4,0,4,-0.2">
+        <Rectangle Fill="#FFE4E3E3" HorizontalAlignment="Center" Height="4" Margin="61,71,62,0" VerticalAlignment="Top" Width="373"/>
+        <Rectangle Fill="#FF414C67" HorizontalAlignment="Center" Height="4" Margin="161,71,175,0" VerticalAlignment="Top" Width="160"/>
+        <Label Content="AUTENTIFICARE" HorizontalAlignment="Left" Margin="165,36,0,0" VerticalAlignment="Top" Width="153" FontFamily="Arial" FontSize="18" BorderBrush="Black" Foreground="#FF414C67"/>
+        <Label Content="User name:" HorizontalAlignment="Center" Margin="136,122,234,0" VerticalAlignment="Top" Width="126" Foreground="#FF414C67"/>
+        <Label Content="Password:" HorizontalAlignment="Center" Margin="136,194,234,0" VerticalAlignment="Top" Width="126" Foreground="#FF414C67"/>
+        <TextBox x:Name="tbUser" HorizontalAlignment="Center" Height="25" Margin="0,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="223" Foreground="#FF414C67"/>
+        <PasswordBox x:Name="tbPass" HorizontalAlignment="Center" Height="26" Margin="0,224,0,0" VerticalAlignment="Top" Width="224" BorderThickness="1,1,1,1" Foreground="#FF414C67"/>
+        <Button x:Name="btnLog" HorizontalAlignment="Left" Height="30" Margin="136,293,0,0" VerticalAlignment="Top" Foreground="White"  Click="btnLog_Click" Width="120">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="4" Background="#FF4A4A4A">
+                        <TextBlock Text="Intra in cont" Foreground="White" 
+                                           HorizontalAlignment="Center"                                           
+                                           Margin="25,5,26,6.4"
+                                           Height="19"
+                                           Width="69"
+                                           FontSize="12"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="btnAnulare" Content="Anulare" HorizontalAlignment="Left" Margin="284,293,0,0" VerticalAlignment="Top" Width="76" Height="30" Foreground="White" Background="#FF4A4A4A" Click="btnAnulare_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="4" Background="#FF4A4A4A">
+                        <TextBlock Text="Anulare" Foreground="White" 
+                                           HorizontalAlignment="Center"                                           
+                                           Margin="17,6,10.2,0.4"
+                                           Height="Auto"
+                                           Width="48"
+                                           FontSize="12"></TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label x:Name="lbAutentificareEsuata" Visibility="Hidden" Content="Autentificare esuata!" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="88,80,0,0" VerticalAlignment="Top" Width="311" Height="42" Background="#FFF36666" BorderBrush="#FF8C0606" BorderThickness="1"/>
+    </Grid>
+</Window>
